@@ -71,8 +71,8 @@ async function dealLogically(page, browser) {
   const jsonData = JSON.stringify(data, null, 2);
 
   //写入文件路径
-  const filePath = `${outportPath}/amount.json`;
-  //调用fs.writeFile()进行写入文件
+  const filePath = `${outportPath}/${+ new Date()}.json`;
+
   fs.writeFile(filePath, jsonData, (err) => {
     if (err) {
       console.error(err);

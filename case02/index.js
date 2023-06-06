@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const { autoScroll } = require("../utils");
 const outportPath = "./case02";
 
 (async () => {
@@ -18,7 +19,7 @@ async function scrollLoad(page) {
   await page.goto("https://www.jd.com/", {
     waitUntil: "networkidle2",
   });
-  
+
   // 获取element内容
   const result = await page.$eval("#hotwords", (el) => {
     return el.innerText;
@@ -34,7 +35,7 @@ async function scrollLoad(page) {
   // element点击
   // const btnEle = await page.$("#search button");
   // await btnEle.click();
-  
+
   // setViewport setUserAgent
   // await page.emulate(puppeteer.KnownDevices["iPhone 13 Pro Max"]);
   // await page.emulate({
@@ -53,25 +54,5 @@ async function scrollLoad(page) {
   await page.screenshot({
     path: `${outportPath}/jd-all.png`,
     fullPage: true,
-  });
-}
-
-// 工具函数 - 自动滚动
-async function autoScroll(page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let totalHeight = 0;
-      const distance = 200;
-      const timer = setInterval(() => {
-        const scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-
-        if (totalHeight >= scrollHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 200);
-    });
   });
 }

@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
-
-const outportPath = './case01';
+const outportPath = "./case01";
 
 (async () => {
   // 1. 创建了Browser实例，类似打开浏览器

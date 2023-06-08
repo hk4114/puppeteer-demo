@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs-extra");
-const { autoScroll } = require("../utils");
 const outportPath = "./case03";
 
 async function demo() {
@@ -14,14 +13,13 @@ async function demo() {
   await dealLogically(page, browser);
 }
 
+demo();
+
 async function dealLogically(page, browser) {
   // 控制浏览器全屏
   await page.setViewport({ width: 1920, height: 1080 });
   // 在新标签中打开要爬取的网页
   await page.goto("https://www.bilibili.com/");
-
-  // 由于折扣速递板块位于最下方，所以需要页面滚动到最底端(封装页面滚动函数)
-  await autoScroll(page);
 
   //返回的data
   let data = [];
@@ -81,5 +79,3 @@ async function dealLogically(page, browser) {
     console.log("Data written to file");
   });
 }
-
-demo();

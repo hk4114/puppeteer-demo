@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const cookieObjects = require("./cookie");
+
 (async () => {
   const puppeteer = require("puppeteer");
   const browser = await puppeteer.launch({ headless: false });
